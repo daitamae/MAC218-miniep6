@@ -1,0 +1,11 @@
+//construir a imagem do servidor Caddy utilizando o Dockerfile do diretório
+
+docker build -t miniep6 .
+
+//subir um container da imagem criada anteriormente na porta 3000
+// flag -v especificando o volume criado entre o diretório local ./src contendo os arquivos html e o diretório /usr/src/pages no container
+
+docker container run -v $(pwd)/src:/usr/src/pages --name miniep6_container -p 3000:3000 miniep6
+
+//após a execução dos comandos, é possível realizar alterações locais nos arquivos html no diretório ./src e elas serão automaticamente 
+//propagadas para o container, não sendo necessário pará-lo para atualizar os arquivos
